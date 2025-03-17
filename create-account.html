@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="login-box">
+        <h2>Create Account</h2>
+        <form onsubmit="return validateEmail()">
+            <div class="input-group">
+                <input type="text" placeholder="Username" required>
+            </div>
+            <div class="input-group">
+                <input type="email" placeholder="Email" required id="emailField">
+            </div>
+            <div class="input-group">
+                <input type="password" placeholder="Password" required id="passwordField">
+                <button type="button" class="password-toggle" onclick="togglePassword()">
+                    <i class="fa-regular fa-eye" id="toggleIcon"></i>
+                </button>
+            </div>
+            <button type="submit" class="login-btn">Create Account</button>
+            <div class="create-account">
+                <a href="index.html">Already have an account? Login</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        function togglePassword() {
+            const passwordField = document.getElementById('passwordField');
+            const toggleIcon = document.getElementById('toggleIcon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                toggleIcon.className = 'fa-regular fa-eye-slash';
+            } else {
+                passwordField.type = 'password';
+                toggleIcon.className = 'fa-regular fa-eye';
+            }
+        }
+
+        function validateEmail() {
+            const emailField = document.getElementById('emailField');
+            const email = emailField.value;
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                alert('Please enter a valid email address.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</body>
+
+</html>
